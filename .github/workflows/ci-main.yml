@@ -204,7 +204,6 @@ jobs:
       contains(needs.linguist-job.outputs.languages, '"Handlebars"') ||
       contains(needs.linguist-job.outputs.languages, '"Nunjucks"') ||
       contains(needs.linguist-job.outputs.languages, '"JSON"') ||
-      contains(needs.linguist-job.outputs.languages, '"YAML"') ||
       contains(needs.linguist-job.outputs.languages, '"RAML"') ||
       contains(needs.linguist-job.outputs.languages, '"XML"') ||
       contains(needs.linguist-job.outputs.languages, '"TypeScript"') ||
@@ -227,7 +226,7 @@ jobs:
         languages: 'javascript'
         queries: +security-and-quality
         # Uncomment the below line to apply configuration file found in this repo to this github action
-        config-file: ./.github/codeql/codeql-config.yml
+        #config-file: ./.github/codeql/codeql-config.yml
     
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
@@ -362,6 +361,7 @@ jobs:
     if: |
       contains(needs.linguist-job.outputs.languages, '"Dockerfile"') ||
       contains(needs.linguist-job.outputs.languages, '"HCL"') ||
+      contains(needs.linguist-job.outputs.languages, '"YML"') ||
       contains(needs.linguist-job.outputs.languages, '"VCL"')
     runs-on: ubuntu-latest
     permissions:

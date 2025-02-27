@@ -374,7 +374,7 @@ jobs:
     - name: Run KICS
       uses: checkmarx/kics-github-action@v1.4
       with:
-        path: './*'
+        path: '**/*'
         ignore_on_exit: all
         output_formats: 'sarif'
     

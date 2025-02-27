@@ -492,10 +492,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Set repository name in lowercase
-        run: |
-          echo "REPO_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-
       - name: Build/Publish as GitHub Package
         uses: docker/build-push-action@v5
         with:
@@ -505,8 +501,8 @@ jobs:
           push: true
           provenance: false
           tags: |
-            ghcr.io/${{ github.repository | downcase }}:latest
-            ghcr.io/${{ github.repository | downcase }}:${{ needs.init.outputs.image_version }}
+            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:${{ needs.init.outputs.image_version }}
 
       - name: Check tag and push in Github
         run: |
@@ -540,7 +536,5 @@ jobs:
           tag_name: ${{ needs.init.outputs.image_version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          name: ${{steps.update-version.outputs.version}}
-          tag_name: ${{steps.update-version.outputs.version}}
-          target_commitish: ${{ steps.tag.outputs.sha }}
-
+          
+    #name: Can call Ansible playbook (RestAPI)

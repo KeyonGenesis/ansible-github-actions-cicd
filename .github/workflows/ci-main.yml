@@ -360,8 +360,9 @@ jobs:
     needs: linguist-job
     if: |
       contains(needs.linguist-job.outputs.languages, '"Dockerfile"') ||
-      contains(needs.linguist-job.outputs.languages, '"HCL"') ||
-      contains(needs.linguist-job.outputs.languages, '"YML"') ||
+      contains(needs.linguist-job.outputs.languages, '"HCL"')  ||
+      contains(needs.linguist-job.outputs.languages, '"YML"')  ||
+      contains(needs.linguist-job.outputs.languages, '"YAML"') ||
       contains(needs.linguist-job.outputs.languages, '"VCL"')
     runs-on: ubuntu-latest
     permissions:
@@ -374,7 +375,7 @@ jobs:
     - name: Run KICS
       uses: checkmarx/kics-github-action@v1.4
       with:
-        path: '**/*'
+        path: '**/*' # Ensure all directories are scanned
         ignore_on_exit: all
         output_formats: 'sarif'
     

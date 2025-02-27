@@ -374,7 +374,7 @@ jobs:
     - name: Run KICS
       uses: checkmarx/kics-github-action@v1.4
       with:
-        path: './'
+        path: './*'
         ignore_on_exit: all
         output_formats: 'sarif'
     
@@ -501,8 +501,8 @@ jobs:
           push: true
           provenance: false
           tags: |
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ needs.init.outputs.image_version }}
+            ghcr.io/${{ github.repository | downcase }}:latest
+            ghcr.io/${{ github.repository | downcase }}:${{ needs.init.outputs.image_version }}
 
       - name: Check tag and push in Github
         run: |

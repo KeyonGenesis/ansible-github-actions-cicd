@@ -536,5 +536,6 @@ jobs:
           tag_name: ${{ needs.init.outputs.image_version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         
           
     #name: Can call Ansible playbook (RestAPI)
